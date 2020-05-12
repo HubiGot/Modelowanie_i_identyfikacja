@@ -7,6 +7,7 @@ Created on Sat Apr  4 14:34:01 2020
 from generatory import *
 import random
 import numpy as np
+import array
 import matplotlib.pyplot as plt
 import math
 from scipy import signal
@@ -72,9 +73,29 @@ def multitab_generator(N,L,tabtab):
         tabtab.append(resulttab.copy())
         testtab.clear()
         resulttab.clear()
+        
+def MSE_err(N,L):
+    mse_errtab=[]
+    uni_tab=[] #tablica z roz. jednostajnym do tworzenia kolejnych rozkladow
+    testtab=[] #tablica z rozkładem do estymacji 
+    for n in N:
+        mse_sum=0
+        for i in range(0,L):
+            gen_sawtooth(uni_tab,n,88000)
+            for x in uni_tab:
+                y=roz_normalny(x,5,1)
+                testtab.append(y)
+            mse_sum+=(est_wo(testtab)-5)**2
+            uni_tab.clear()
+            testtab.clear()
+        err=mse_sum/L
+        mse_errtab.append(err)
+    return mse_errtab
+        
+    
 
 if __name__=='__main__':
-    testtab=[]
+    """testtab=[]
     resulttab=[]
     resulttab2=[]
     gen_sawtooth(testtab, 10000, 88000)
@@ -109,7 +130,19 @@ if __name__=='__main__':
         wo=est_wo(multitab[i])
         y=(wo-mi)**2
         mse_suma+=y
-        
-    print("MSE empiryczny dla normalnego L=10 N=100 mi=5: %.10f" %mse_suma)
+       """
+    #numbers_list = [10, 50, 100, 250, 500, 1000, 2000]
+    N=[]
+    for i in range(10,1000,25):
+        N.append(i)
+    L=10
+    resulttab=[]
+    resulttab=MSE_err(N,L)
+    plt.plot(N,resulttab)
+    plt.title("Błąd empiryczny MSE przy L=10")
+    plt.xlabel("liczba próbek n")
+    plt.ylabel("wartość błędu")
+    plt.show()
+    #print("MSE empiryczny dla normalnego L=10 N=100 mi=5: %.10f" %mse_suma)
 
 

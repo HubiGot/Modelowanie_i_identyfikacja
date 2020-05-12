@@ -30,11 +30,11 @@ def gen_sawtooth(sawtab,n,w):
     sawtab.append(random.uniform(0,1))
     for x in range(1,n):
         sawtab.append((1+signal.sawtooth(w*sawtab[x-1]))/2)
-    plt.hist(sawtab, bins=500)
-    plt.title('Histogram generatora piłokształtnego')
-    plt.ylabel('liczba wystąpień próbki')
-    plt.xlabel("zmienna losowa")
-    plt.show()
+    #plt.hist(sawtab, bins=500)
+    #plt.title('Histogram generatora piłokształtnego')
+    #plt.ylabel('liczba wystąpień próbki')
+    #plt.xlabel("zmienna losowa")
+    #plt.show()
 
 def gen_fibo(fibotab,n,fibo_p,fibo_q, fibo_mod):
     for x in range(0, fibo_p+1):
