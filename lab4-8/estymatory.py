@@ -83,9 +83,9 @@ def MSE_err(N,L):
         for i in range(0,L):
             gen_sawtooth(uni_tab,n,88000)
             for x in uni_tab:
-                y=roz_normalny(x,5,1)
+                y=roz_normalny(x,0,1)
                 testtab.append(y)
-            mse_sum+=(est_wo(testtab)-5)**2
+            mse_sum+=(est_varob(testtab)-1)**2
             uni_tab.clear()
             testtab.clear()
         err=mse_sum/L
@@ -95,13 +95,14 @@ def MSE_err(N,L):
     
 
 if __name__=='__main__':
-    """testtab=[]
+    """
+    testtab=[]
     resulttab=[]
     resulttab2=[]
     gen_sawtooth(testtab, 10000, 88000)
     for x in testtab:
-        y=roz_normalny(x, 5, 1)
-        z=roz_wykladniczy(x, 0.5)
+        y=roz_normalny(x,5,1)
+        z=roz_wykladniczy(x,0.5)
         resulttab.append(y)
         resulttab2.append(z)
     
@@ -130,10 +131,10 @@ if __name__=='__main__':
         wo=est_wo(multitab[i])
         y=(wo-mi)**2
         mse_suma+=y
-       """
+    """ 
     #numbers_list = [10, 50, 100, 250, 500, 1000, 2000]
     N=[]
-    for i in range(10,1000,25):
+    for i in range(10,1000,20):
         N.append(i)
     L=10
     resulttab=[]
@@ -144,5 +145,5 @@ if __name__=='__main__':
     plt.ylabel("wartość błędu")
     plt.show()
     #print("MSE empiryczny dla normalnego L=10 N=100 mi=5: %.10f" %mse_suma)
-
+    
 

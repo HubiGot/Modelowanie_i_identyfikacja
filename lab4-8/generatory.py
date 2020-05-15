@@ -63,8 +63,8 @@ def roz_logistyczny(x,mi,s):
 def roz_cauchy(x,x0,gamma):
     return gamma*np.tan(np.pi*(x-0.5))+x0
 
-def roz_normalny(x,mi,delta):
-    return delta*np.sqrt(2)*special.erfinv(2*x-1)
+#def roz_normalny(x,mi,delta):
+#   return delta*np.sqrt(2)*special.erfinv(2*x-1)
 
 def roz_trojkatny(x):
     tmp=random.uniform(0,1)
