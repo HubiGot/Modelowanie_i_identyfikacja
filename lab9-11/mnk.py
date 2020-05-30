@@ -69,7 +69,7 @@ if __name__=="__main__":
     print(a_est)
     print("")
     cov_a=cov_an(Xn,np.sqrt(var))
-
+    
     nx, ny = 10, 10
     x = range(nx)
     y = range(ny)
